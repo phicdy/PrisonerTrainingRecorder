@@ -3,6 +3,7 @@ package com.phicdy.prisonertrainingrecorder
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
+import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -10,11 +11,10 @@ class MainActivity : AppCompatActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_training -> {
-                message.setText(R.string.title_training)
+                showTraining()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_history -> {
-                message.setText(R.string.title_history)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -26,5 +26,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        showTraining()
+    }
+
+    private fun showTraining() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, TrainingSelectFragment())
+                .commit()
     }
 }
