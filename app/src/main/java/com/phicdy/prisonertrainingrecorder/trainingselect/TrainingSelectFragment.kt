@@ -1,7 +1,8 @@
 package com.phicdy.prisonertrainingrecorder.trainingselect
 
+import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.os.Bundle
-import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
@@ -17,11 +18,23 @@ import com.phicdy.prisonertrainingrecorder.databinding.TrainingSelectFragmentBin
 class TrainingSelectFragment : Fragment() {
 
     private lateinit var binding: TrainingSelectFragmentBinding
+    private val trainingSelectViewModel: TrainingSelectViewModel by lazy {
+        ViewModelProviders.of(this).get(TrainingSelectViewModel::class.java)
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = TrainingSelectFragmentBinding.inflate(inflater, container, false)
         return binding.root
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is TrainingSelectNavigator) {
+            trainingSelectViewModel.setNavigator(context)
+        } else {
+            throw RuntimeException(context.toString() + " must implement TrainingSelectNavigator")
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -32,11 +45,11 @@ class TrainingSelectFragment : Fragment() {
     private fun setupRecyclerView() {
         binding.rvTraining.apply {
             adapter = TrainingAdapter(listOf(Training("Push Up"), Training("Squat"), Training("Pull Up"),
-                    Training("Leg Raise"), Training("Bridge"), Training("Handstand Push Up")))
+                    Training("Leg Raise"), Training("Bridge"), Training("Handstand Push Up")), trainingSelectViewModel)
         }
     }
 
-    private class TrainingAdapter(val trainingList: List<Training>): RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
+    private class TrainingAdapter(val trainingList: List<Training>, val viewModel: TrainingSelectViewModel): RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
             val v = LayoutInflater.from(parent.context).inflate(R.layout.item_training_list, parent, false)
@@ -50,7 +63,7 @@ class TrainingSelectFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.title.text = trainingList[position].title
             holder.v.setOnClickListener {
-                Snackbar.make(it, holder.title.text, Snackbar.LENGTH_SHORT).show()
+                viewModel.onTrainingClicked(trainingList[position])
             }
         }
 
