@@ -1,2 +1,4 @@
 <resources>
+    <dimen name="training_select_training_title_height">192dp</dimen>
+    <dimen name="training_select_training_padding">4dp</dimen>
 </resources>

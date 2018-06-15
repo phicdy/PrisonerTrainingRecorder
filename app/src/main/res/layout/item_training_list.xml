@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.constraint.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/training_select_training_title_height"
+    android:padding="@dimen/training_select_training_padding">
 
     <ImageView
         android:id="@+id/iv_training_image"
@@ -11,6 +12,7 @@
         android:contentDescription="@string/title_training"/>
     <TextView
         android:id="@+id/tv_training_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style="@style/TextAppearance.PrisonerTrainingRecorder.TrainingTitle"/>
 </android.support.constraint.ConstraintLayout>
