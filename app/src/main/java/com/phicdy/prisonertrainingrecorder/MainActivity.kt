@@ -2,12 +2,13 @@ package com.phicdy.prisonertrainingrecorder
 
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.phicdy.prisonertrainingrecorder.data.Training
+import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingRecordFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
-import kotlinx.android.synthetic.main.activity_main.*
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TrainingSelectNavigator {
 
@@ -32,13 +33,22 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator {
         showTraining()
     }
 
+    override fun onTrainingClicked(view: View, training: Training) {
+        showRecord(view, training)
+    }
+
     private fun showTraining() {
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_content, TrainingSelectFragment())
                 .commit()
     }
 
-    override fun onTrainingClicked(training: Training) {
-        Snackbar.make(navigation, training.title, Snackbar.LENGTH_SHORT).show()
+    private fun showRecord(view: View, training: Training) {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, TrainingRecordFragment.newInstance(training))
+                .addToBackStack(null)
+                .addSharedElement(view, TrainingRecordFragment.TRAINING_TRANSITION_NAME)
+                .commit()
     }
+
 }

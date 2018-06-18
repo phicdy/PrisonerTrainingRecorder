@@ -3,7 +3,11 @@ package com.phicdy.prisonertrainingrecorder.trainingselect
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
+import android.support.transition.Explode
 import android.support.v4.app.Fragment
+import android.support.v4.view.ViewCompat
+import android.support.v4.view.animation.FastOutLinearInInterpolator
+import android.support.v4.view.animation.LinearOutSlowInInterpolator
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -17,9 +21,28 @@ import com.phicdy.prisonertrainingrecorder.databinding.TrainingSelectFragmentBin
 
 class TrainingSelectFragment : Fragment() {
 
+    companion object {
+        const val EXIT_TRANSITION_DURATION = 150L
+        const val REENTER_TRANSITION_DURATION = 225L
+    }
+
     private lateinit var binding: TrainingSelectFragmentBinding
     private val trainingSelectViewModel: TrainingSelectViewModel by lazy {
         ViewModelProviders.of(this).get(TrainingSelectViewModel::class.java)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        exitTransition = Explode().apply {
+            mode = Explode.MODE_OUT
+            duration = EXIT_TRANSITION_DURATION
+            interpolator = FastOutLinearInInterpolator()
+        }
+        reenterTransition = Explode().apply {
+            mode = Explode.MODE_IN
+            duration = REENTER_TRANSITION_DURATION
+            interpolator = LinearOutSlowInInterpolator()
+        }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -63,8 +86,9 @@ class TrainingSelectFragment : Fragment() {
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
             holder.title.text = trainingList[position].title
             holder.v.setOnClickListener {
-                viewModel.onTrainingClicked(trainingList[position])
+                viewModel.onTrainingClicked(holder.title, trainingList[position])
             }
+            ViewCompat.setTransitionName(holder.title, "title-$position")
         }
 
         class ViewHolder(val v: View) : RecyclerView.ViewHolder(v) {

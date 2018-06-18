@@ -1,6 +1,7 @@
 package com.phicdy.prisonertrainingrecorder.trainingselect
 
 import android.arch.lifecycle.ViewModel
+import android.view.View
 import com.phicdy.prisonertrainingrecorder.data.Training
 
 class TrainingSelectViewModel: ViewModel() {
@@ -10,8 +11,8 @@ class TrainingSelectViewModel: ViewModel() {
         this.navigator = navigator
     }
 
-    fun onTrainingClicked(training: Training) {
+    fun onTrainingClicked(view: View, training: Training) {
         if (navigator == null) return
-        navigator!!.onTrainingClicked(training)
+        navigator!!.onTrainingClicked(view, training)
     }
 }
