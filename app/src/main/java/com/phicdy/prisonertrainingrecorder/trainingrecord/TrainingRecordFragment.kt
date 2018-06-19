@@ -20,10 +20,12 @@ import android.widget.TextView
 import com.phicdy.prisonertrainingrecorder.R
 import com.phicdy.prisonertrainingrecorder.data.Training
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
+import com.phicdy.prisonertrainingrecorder.databinding.TrainingRecordFragmentBinding
 
 class TrainingRecordFragment : Fragment() {
 
     private var mListener: TrainingRecordNavigator? = null
+    private lateinit var binding: TrainingRecordFragmentBinding
 
     companion object {
         const val ENTER_TRANSITION_DURATION = 225L
@@ -70,10 +72,9 @@ class TrainingRecordFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_training_record, container, false)
-        val title = view.findViewById<TextView>(R.id.tv_training_record_title)
-        title.text = arguments?.getString(ARG_TRAINING_TITLE) ?: ""
-        return view
+        binding = TrainingRecordFragmentBinding.inflate(inflater, container, false)
+        binding.tvTrainingRecordTitle.text = arguments?.getString(ARG_TRAINING_TITLE) ?: ""
+        return binding.root
     }
 
     override fun onAttach(context: Context?) {
