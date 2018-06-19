@@ -6,12 +6,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.phicdy.prisonertrainingrecorder.data.Training
 import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordFragment
+import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordNavigator
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity(), TrainingSelectNavigator {
-
+class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecordNavigator {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_training -> {
@@ -49,6 +49,9 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator {
                 .addToBackStack(null)
                 .addSharedElement(view, TrainingRecordFragment.TRAINING_TRANSITION_NAME)
                 .commit()
+    }
+
+    override fun onRecordClicked() {
     }
 
 }

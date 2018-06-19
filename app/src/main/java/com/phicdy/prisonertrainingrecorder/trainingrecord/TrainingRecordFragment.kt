@@ -23,7 +23,7 @@ import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigato
 
 class TrainingRecordFragment : Fragment() {
 
-    private var mListener: TrainingSelectNavigator? = null
+    private var mListener: TrainingRecordNavigator? = null
 
     companion object {
         const val ENTER_TRANSITION_DURATION = 225L
@@ -78,10 +78,10 @@ class TrainingRecordFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
-        if (context is TrainingSelectNavigator) {
+        if (context is TrainingRecordNavigator) {
             mListener = context
         } else {
-            throw RuntimeException(context!!.toString() + " must implement TrainingSelectNavigator")
+            throw RuntimeException(context!!.toString() + " must implement TrainingRecordNavigator")
         }
     }
 
