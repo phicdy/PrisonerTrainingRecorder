@@ -1,4 +1,4 @@
-package com.phicdy.prisonertrainingrecorder.trainingselect
+package com.phicdy.prisonertrainingrecorder.trainingrecord
 
 import android.content.Context
 import android.os.Bundle
@@ -19,6 +19,7 @@ import android.widget.TextView
 
 import com.phicdy.prisonertrainingrecorder.R
 import com.phicdy.prisonertrainingrecorder.data.Training
+import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 
 class TrainingRecordFragment : Fragment() {
 

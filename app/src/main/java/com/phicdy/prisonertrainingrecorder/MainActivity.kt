@@ -5,7 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.phicdy.prisonertrainingrecorder.data.Training
-import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingRecordFragment
+import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 import kotlinx.android.synthetic.main.activity_main.*
