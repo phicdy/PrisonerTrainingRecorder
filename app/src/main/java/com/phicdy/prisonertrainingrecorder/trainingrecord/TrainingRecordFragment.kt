@@ -1,5 +1,6 @@
 package com.phicdy.prisonertrainingrecorder.trainingrecord
 
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.transition.ChangeBounds
@@ -19,13 +20,14 @@ import android.widget.TextView
 
 import com.phicdy.prisonertrainingrecorder.R
 import com.phicdy.prisonertrainingrecorder.data.Training
-import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 import com.phicdy.prisonertrainingrecorder.databinding.TrainingRecordFragmentBinding
 
 class TrainingRecordFragment : Fragment() {
 
-    private var mListener: TrainingRecordNavigator? = null
     private lateinit var binding: TrainingRecordFragmentBinding
+    private val trainingRecordViewModel: TrainingRecordViewModel by lazy {
+        ViewModelProviders.of(this).get(TrainingRecordViewModel::class.java)
+    }
 
     companion object {
         const val ENTER_TRANSITION_DURATION = 225L
@@ -80,7 +82,7 @@ class TrainingRecordFragment : Fragment() {
     override fun onAttach(context: Context?) {
         super.onAttach(context)
         if (context is TrainingRecordNavigator) {
-            mListener = context
+            trainingRecordViewModel.setNavigator(context)
         } else {
             throw RuntimeException(context!!.toString() + " must implement TrainingRecordNavigator")
         }
@@ -89,10 +91,5 @@ class TrainingRecordFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val title = view.findViewById<TextView>(R.id.tv_training_record_title)
         ViewCompat.setTransitionName(title, TRAINING_TRANSITION_NAME)
-    }
-
-    override fun onDetach() {
-        super.onDetach()
-        mListener = null
     }
 }
