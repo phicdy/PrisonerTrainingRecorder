@@ -2,6 +2,6 @@
     <string name="app_name">PrisonerTrainingRecorder</string>
     <string name="title_training">トレーニング</string>
     <string name="title_history">履歴</string>
-    <string name="store">保存</string>
+    <string name="record">記録</string>
     <string name="reps">レップス</string>
 </resources>

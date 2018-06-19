@@ -14,7 +14,7 @@
     <EditText
         android:layout_width="@dimen/training_record_input_width"
         android:layout_height="@dimen/training_record_input_height"
-        app:layout_constraintBottom_toTopOf="@+id/btn_store_training_record"
+        app:layout_constraintBottom_toTopOf="@+id/btn_record_training_record"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_training_record_title"
@@ -24,11 +24,11 @@
         android:hint="@string/reps"
         android:inputType="number" />
     <Button
-        android:id="@+id/btn_store_training_record"
+        android:id="@+id/btn_record_training_record"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
-        android:text="@string/store"
+        android:text="@string/record"
         android:layout_marginBottom="64dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
