@@ -34,6 +34,7 @@ dependencies {
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
     implementation 'com.facebook.stetho:stetho:1.4.2'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:0.23.3"
     implementation "android.arch.lifecycle:extensions:$lifecycle_version"
     implementation "android.arch.persistence.room:runtime:$room_version"
     annotationProcessor "android.arch.persistence.room:compiler:$room_version"
@@ -43,4 +44,10 @@ dependencies {
     testImplementation "android.arch.persistence.room:testing:$room_version"
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+kotlin {
+    experimental {
+        coroutines "enable"
+    }
 }
