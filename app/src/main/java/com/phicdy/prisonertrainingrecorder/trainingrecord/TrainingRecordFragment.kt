@@ -77,7 +77,8 @@ class TrainingRecordFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = TrainingRecordFragmentBinding.inflate(inflater, container, false)
-        binding.tvTrainingRecordTitle.text = arguments?.getString(ARG_TRAINING_TITLE) ?: ""
+        val title = arguments?.getString(ARG_TRAINING_TITLE) ?: ""
+        binding.tvTrainingRecordTitle.text = title
         binding.etReps.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 trainingRecordViewModel.setReps(try {
@@ -93,6 +94,7 @@ class TrainingRecordFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
+        trainingRecordViewModel.setTitle(title)
         return binding.root
     }
 
