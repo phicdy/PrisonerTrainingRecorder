@@ -22,6 +22,7 @@ import android.widget.TextView
 
 import com.phicdy.prisonertrainingrecorder.R
 import com.phicdy.prisonertrainingrecorder.data.Training
+import com.phicdy.prisonertrainingrecorder.data.source.PrisonerTrainingRepository
 import com.phicdy.prisonertrainingrecorder.databinding.TrainingRecordFragmentBinding
 
 class TrainingRecordFragment : Fragment() {
@@ -94,6 +95,7 @@ class TrainingRecordFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
+
         trainingRecordViewModel.setTitle(title)
         binding.viewmodel = trainingRecordViewModel
         return binding.root
@@ -101,10 +103,12 @@ class TrainingRecordFragment : Fragment() {
 
     override fun onAttach(context: Context?) {
         super.onAttach(context)
+        val repository = PrisonerTrainingRepository.getInstance(context!!)
+        trainingRecordViewModel.setRepository(repository)
         if (context is TrainingRecordNavigator) {
             trainingRecordViewModel.setNavigator(context)
         } else {
-            throw RuntimeException(context!!.toString() + " must implement TrainingRecordNavigator")
+            throw RuntimeException(context.toString() + " must implement TrainingRecordNavigator")
         }
     }
 
