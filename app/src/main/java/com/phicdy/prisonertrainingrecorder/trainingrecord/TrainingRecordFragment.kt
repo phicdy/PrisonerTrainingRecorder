@@ -95,6 +95,7 @@ class TrainingRecordFragment : Fragment() {
             }
         })
         trainingRecordViewModel.setTitle(title)
+        binding.viewmodel = trainingRecordViewModel
         return binding.root
     }
 
