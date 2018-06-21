@@ -5,6 +5,7 @@ import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.phicdy.prisonertrainingrecorder.data.Training
+import com.phicdy.prisonertrainingrecorder.traininghistory.TrainingHistoryFragment
 import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordFragment
 import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordNavigator
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_history -> {
+                showHistory()
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -48,6 +50,12 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
                 .replace(R.id.fl_content, TrainingRecordFragment.newInstance(training))
                 .addToBackStack(null)
                 .addSharedElement(view, TrainingRecordFragment.TRAINING_TRANSITION_NAME)
+                .commit()
+    }
+
+    private fun showHistory() {
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.fl_content, TrainingHistoryFragment.newInstance())
                 .commit()
     }
 
