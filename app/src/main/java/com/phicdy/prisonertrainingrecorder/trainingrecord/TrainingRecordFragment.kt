@@ -98,9 +98,9 @@ class TrainingRecordFragment : Fragment() {
         return binding.root
     }
 
-    override fun onAttach(context: Context?) {
+    override fun onAttach(context: Context) {
         super.onAttach(context)
-        val repository = PrisonerTrainingRepository.getInstance(context!!)
+        val repository = PrisonerTrainingRepository.getInstance(context)
         trainingRecordViewModel.setRepository(repository)
         if (context is TrainingRecordNavigator) {
             trainingRecordViewModel.setNavigator(context)
