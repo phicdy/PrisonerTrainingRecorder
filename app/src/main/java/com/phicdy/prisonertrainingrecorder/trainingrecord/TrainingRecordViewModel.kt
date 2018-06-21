@@ -2,6 +2,7 @@ package com.phicdy.prisonertrainingrecorder.trainingrecord
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableField
 import com.phicdy.prisonertrainingrecorder.data.TrainingHistory
 import com.phicdy.prisonertrainingrecorder.data.source.PrisonerTrainingRepository
 import kotlinx.coroutines.experimental.CommonPool
@@ -13,11 +14,7 @@ class TrainingRecordViewModel : ViewModel() {
     private lateinit var navigator: TrainingRecordNavigator
     private lateinit var repository: PrisonerTrainingRepository
     private val trainingTitle: MutableLiveData<String> = MutableLiveData()
-    private val reps: MutableLiveData<Int> = MutableLiveData()
-
-    fun setReps(reps: Int) {
-        this.reps.value = reps
-    }
+    val reps = ObservableField<String>()
 
     fun setTitle(title: String) {
         this.trainingTitle.value = title
@@ -40,7 +37,8 @@ class TrainingRecordViewModel : ViewModel() {
 
     private suspend fun recordHistory() {
         withContext(CommonPool) {
-            repository.insertHistory(TrainingHistory(0, trainingTitle.value?:"", reps.value?:0))
+            repository.insertHistory(
+                    TrainingHistory(0, trainingTitle.value?:"", reps.get()?.toInt()?:0))
         }
     }
 }

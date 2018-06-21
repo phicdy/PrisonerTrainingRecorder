@@ -82,11 +82,7 @@ class TrainingRecordFragment : Fragment() {
         binding.tvTrainingRecordTitle.text = title
         binding.etReps.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                trainingRecordViewModel.setReps(try {
-                    s.toString().toInt()
-                } catch (e: NumberFormatException) {
-                    0
-                })
+                trainingRecordViewModel.reps.set(s.toString())
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
