@@ -32,6 +32,7 @@ class TrainingRecordViewModel : ViewModel() {
         launch(UI) {
             recordHistory()
             navigator.onRecordClicked()
+            reps.set("")
         }
     }
 
