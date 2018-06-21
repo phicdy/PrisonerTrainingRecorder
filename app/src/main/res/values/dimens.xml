@@ -4,7 +4,7 @@
     <dimen name="training_select_training_padding">4dp</dimen>
 
     <!-- Training Record -->
-    <dimen name="training_record_training_title_height">192dp</dimen>
+    <dimen name="training_record_training_title_height">156dp</dimen>
     <dimen name="training_record_input_width">128dp</dimen>
     <dimen name="training_record_input_height">128dp</dimen>
     <dimen name="training_record_input_text_size">24sp</dimen>
