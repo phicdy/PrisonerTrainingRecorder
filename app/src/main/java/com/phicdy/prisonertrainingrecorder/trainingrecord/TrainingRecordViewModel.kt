@@ -9,6 +9,7 @@ import kotlinx.coroutines.experimental.CommonPool
 import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.withContext
+import java.lang.NumberFormatException
 
 class TrainingRecordViewModel : ViewModel() {
     private lateinit var navigator: TrainingRecordNavigator
@@ -29,17 +30,34 @@ class TrainingRecordViewModel : ViewModel() {
     }
 
     fun onRecordClicked() {
-        launch(UI) {
-            recordHistory()
-            navigator.closeKeyboard()
-            reps.set("")
+        if (reps.get() == null) {
+            navigator.showRecordNoRepsErrorSnackbar()
+            return
+        }
+        reps.get()?.let {
+            val repsInt: Int
+            try {
+                repsInt = it.toInt()
+            } catch (e: NumberFormatException) {
+                navigator.showRecordNoRepsErrorSnackbar()
+                return
+            }
+            if (repsInt <= 0) {
+                navigator.showRecord0RepsErrorSnackbar()
+                return
+            }
+            launch(UI) {
+                recordHistory(trainingTitle.value.toString(), repsInt)
+                navigator.closeKeyboard()
+                navigator.showRecordSuccessSnackbar()
+                reps.set("")
+            }
         }
     }
 
-    private suspend fun recordHistory() {
+    private suspend fun recordHistory(title: String, reps: Int) {
         withContext(CommonPool) {
-            repository.insertHistory(
-                    TrainingHistory(0, trainingTitle.value?:"", reps.get()?.toInt()?:0))
+            repository.insertHistory(TrainingHistory(0, title, reps))
         }
     }
 }

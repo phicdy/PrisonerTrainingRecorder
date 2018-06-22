@@ -3,6 +3,7 @@ package com.phicdy.prisonertrainingrecorder
 import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
+import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import com.phicdy.prisonertrainingrecorder.data.Training
@@ -70,4 +71,15 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
         }
     }
 
+    override fun showRecordSuccessSnackbar() {
+        Snackbar.make(navigation, R.string.record_result_success, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showRecordNoRepsErrorSnackbar() {
+        Snackbar.make(navigation, R.string.record_result_no_reps, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showRecord0RepsErrorSnackbar() {
+        Snackbar.make(navigation, R.string.record_result_0_reps, Snackbar.LENGTH_SHORT).show()
+    }
 }

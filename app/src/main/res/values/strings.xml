@@ -3,5 +3,8 @@
     <string name="title_training">トレーニング</string>
     <string name="title_history">履歴</string>
     <string name="record">記録</string>
+    <string name="record_result_success">記録しました</string>
+    <string name="record_result_no_reps">レップスを入力してください</string>
+    <string name="record_result_0_reps">レップスを1以上で入力してください</string>
     <string name="reps">レップス</string>
 </resources>
