@@ -30,28 +30,23 @@ class TrainingRecordViewModel : ViewModel() {
     }
 
     fun onRecordClicked() {
-        if (reps.get() == null) {
+        val repsValue = reps.get()?: ""
+        val repsInt: Int
+        try {
+            repsInt = repsValue.toInt()
+        } catch (e: NumberFormatException) {
             navigator.showRecordNoRepsErrorSnackbar()
             return
         }
-        reps.get()?.let {
-            val repsInt: Int
-            try {
-                repsInt = it.toInt()
-            } catch (e: NumberFormatException) {
-                navigator.showRecordNoRepsErrorSnackbar()
-                return
-            }
-            if (repsInt <= 0) {
-                navigator.showRecord0RepsErrorSnackbar()
-                return
-            }
-            launch(UI) {
-                recordHistory(trainingTitle.value.toString(), repsInt)
-                navigator.closeKeyboard()
-                navigator.showRecordSuccessSnackbar()
-                reps.set("")
-            }
+        if (repsInt <= 0) {
+            navigator.showRecord0RepsErrorSnackbar()
+            return
+        }
+        launch(UI) {
+            recordHistory(trainingTitle.value.toString(), repsInt)
+            navigator.closeKeyboard()
+            navigator.showRecordSuccessSnackbar()
+            reps.set("")
         }
     }
 
