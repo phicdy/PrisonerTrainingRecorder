@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
         setContentView(R.layout.activity_main)
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        showTraining()
+        if (savedInstanceState == null) showTraining()
     }
 
     override fun onTrainingClicked(view: View, training: Training) {
