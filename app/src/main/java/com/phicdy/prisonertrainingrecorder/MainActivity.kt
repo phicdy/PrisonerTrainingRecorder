@@ -1,5 +1,6 @@
 package com.phicdy.prisonertrainingrecorder
 
+import android.content.Context
 import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v7.app.AppCompatActivity
@@ -11,6 +12,8 @@ import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordNavigato
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 import kotlinx.android.synthetic.main.activity_main.*
+import android.view.inputmethod.InputMethodManager
+
 
 class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecordNavigator {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -59,7 +62,12 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
                 .commit()
     }
 
-    override fun onRecordClicked() {
+    override fun closeKeyboard() {
+        val view = currentFocus
+        if (view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
 }

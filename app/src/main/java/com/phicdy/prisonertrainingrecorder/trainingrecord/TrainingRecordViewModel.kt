@@ -31,7 +31,7 @@ class TrainingRecordViewModel : ViewModel() {
     fun onRecordClicked() {
         launch(UI) {
             recordHistory()
-            navigator.onRecordClicked()
+            navigator.closeKeyboard()
             reps.set("")
         }
     }
