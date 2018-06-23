@@ -3,6 +3,7 @@ package com.phicdy.prisonertrainingrecorder.data
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
 import android.arch.persistence.room.PrimaryKey
+import java.util.Date
 
 @Entity
 data class TrainingHistory constructor(
@@ -13,5 +14,8 @@ data class TrainingHistory constructor(
     var trainingName: String,
 
     @ColumnInfo(name = "reps")
-    var reps: Int
+    var reps: Int,
+
+    @ColumnInfo(name = "date")
+    var date: Date
 )

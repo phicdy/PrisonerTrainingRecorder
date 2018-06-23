@@ -10,6 +10,7 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.withContext
 import java.lang.NumberFormatException
+import java.util.*
 
 class TrainingRecordViewModel : ViewModel() {
     private lateinit var navigator: TrainingRecordNavigator
@@ -52,7 +53,7 @@ class TrainingRecordViewModel : ViewModel() {
 
     private suspend fun recordHistory(title: String, reps: Int) {
         withContext(CommonPool) {
-            repository.insertHistory(TrainingHistory(0, title, reps))
+            repository.insertHistory(TrainingHistory(0, title, reps, Date()))
         }
     }
 }
