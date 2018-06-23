@@ -32,11 +32,8 @@ class TrainingRecordViewModel : ViewModel() {
     }
 
     fun onRecordClicked() {
-        val repsValue = reps.get()?: ""
-        val repsInt: Int
-        try {
-            repsInt = repsValue.toInt()
-        } catch (e: NumberFormatException) {
+        val repsInt = reps.get()?.toIntOrNull()
+        if (repsInt == null) {
             navigator.showRecordNoRepsErrorSnackbar()
             return
         }
