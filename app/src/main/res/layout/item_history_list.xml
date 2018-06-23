@@ -15,11 +15,20 @@
         android:padding="@dimen/training_select_training_padding">
 
         <TextView
+            android:id="@+id/tv_history_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@{history.date}"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="2018/01/01 12:34:56" />
+
+        <TextView
             android:id="@+id/tv_history_training_title"
             android:layout_width="128dp"
             android:layout_height="wrap_content"
             android:text="@{history.trainingName}"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_date"
             tools:text="Push up" />
 
         <TextView
@@ -27,6 +36,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{Integer.toString(history.reps)}"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_date"
             app:layout_constraintStart_toEndOf="@+id/tv_history_training_title"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="100" />
