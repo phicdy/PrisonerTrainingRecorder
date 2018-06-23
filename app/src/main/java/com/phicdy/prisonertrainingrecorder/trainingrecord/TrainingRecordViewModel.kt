@@ -10,7 +10,8 @@ import kotlinx.coroutines.experimental.android.UI
 import kotlinx.coroutines.experimental.launch
 import kotlinx.coroutines.experimental.withContext
 import java.lang.NumberFormatException
-import java.util.*
+import java.util.Date
+
 
 class TrainingRecordViewModel : ViewModel() {
     private lateinit var navigator: TrainingRecordNavigator
