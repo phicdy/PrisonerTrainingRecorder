@@ -18,8 +18,8 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.TextView
-
 import com.phicdy.prisonertrainingrecorder.R
 import com.phicdy.prisonertrainingrecorder.data.Training
 import com.phicdy.prisonertrainingrecorder.data.source.PrisonerTrainingRepository
@@ -108,6 +108,14 @@ class TrainingRecordFragment : Fragment() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             }
         })
+        binding.etReps.setOnFocusChangeListener { _, hasFocus ->
+            if (!hasFocus) return@setOnFocusChangeListener
+            activity?.let { activity ->
+                val imm = activity.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED,0)
+            }
+        }
+        binding.etReps.requestFocus()
 
         trainingRecordViewModel.setTitle(title)
         binding.setLifecycleOwner(this)
