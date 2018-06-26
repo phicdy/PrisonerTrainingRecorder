@@ -82,4 +82,13 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
     override fun showRecord0RepsErrorSnackbar() {
         Snackbar.make(navigation, R.string.record_result_0_reps, Snackbar.LENGTH_SHORT).show()
     }
+
+    override fun showRecordNoStepErrorSnackbar() {
+        Snackbar.make(navigation, R.string.record_result_no_step, Snackbar.LENGTH_SHORT).show()
+    }
+
+    override fun showRecordNot1to10ErrorSnackbar() {
+        Snackbar.make(navigation, R.string.record_result_not_1_to_10_reps, Snackbar.LENGTH_SHORT).show()
+    }
+
 }

@@ -5,4 +5,6 @@ interface TrainingRecordNavigator {
     fun showRecordSuccessSnackbar()
     fun showRecordNoRepsErrorSnackbar()
     fun showRecord0RepsErrorSnackbar()
+    fun showRecordNoStepErrorSnackbar()
+    fun showRecordNot1to10ErrorSnackbar()
 }

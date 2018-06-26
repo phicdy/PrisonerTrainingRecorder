@@ -16,6 +16,9 @@ data class TrainingHistory constructor(
     @ColumnInfo(name = "reps")
     var reps: Int,
 
+    @ColumnInfo(name = "step")
+    var step: Int,
+
     @ColumnInfo(name = "date")
     var date: Date
 )

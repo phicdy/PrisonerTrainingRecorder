@@ -6,5 +6,8 @@
     <string name="record_result_success">記録しました</string>
     <string name="record_result_no_reps">レップスを入力してください</string>
     <string name="record_result_0_reps">レップスを1以上で入力してください</string>
+    <string name="record_result_no_step">ステップを入力してください</string>
+    <string name="record_result_not_1_to_10_reps">ステップを1から10で入力してください</string>
     <string name="reps">レップス</string>
+    <string name="step">ステップ</string>
 </resources>

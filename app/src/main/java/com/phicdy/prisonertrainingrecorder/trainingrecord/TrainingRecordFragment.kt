@@ -80,6 +80,23 @@ class TrainingRecordFragment : Fragment() {
         binding = TrainingRecordFragmentBinding.inflate(inflater, container, false)
         val title = arguments?.getString(ARG_TRAINING_TITLE) ?: ""
         binding.tvTrainingRecordTitle.text = title
+
+        // Step
+        if (savedInstanceState == null)
+            trainingRecordViewModel.steps.set("1")
+        binding.etStep.addTextChangedListener(object: TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                trainingRecordViewModel.steps.set(s.toString())
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            }
+        })
+
+        // Reps
         binding.etReps.addTextChangedListener(object: TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 trainingRecordViewModel.reps.set(s.toString())
