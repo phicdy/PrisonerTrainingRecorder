@@ -32,12 +32,22 @@
             tools:text="Push up" />
 
         <TextView
+            android:id="@+id/tv_history_step"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{String.format(@string/history_step, history.step)}"
+            app:layout_constraintTop_toBottomOf="@id/tv_history_date"
+            app:layout_constraintStart_toEndOf="@+id/tv_history_training_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="Step1" />
+
+        <TextView
             android:id="@+id/tv_history_reps"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{Integer.toString(history.reps)}"
             app:layout_constraintTop_toBottomOf="@id/tv_history_date"
-            app:layout_constraintStart_toEndOf="@+id/tv_history_training_title"
+            app:layout_constraintStart_toEndOf="@+id/tv_history_step"
             app:layout_constraintEnd_toEndOf="parent"
             tools:text="100" />
     </android.support.constraint.ConstraintLayout>
