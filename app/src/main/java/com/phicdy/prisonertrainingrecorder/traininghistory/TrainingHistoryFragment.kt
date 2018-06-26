@@ -29,6 +29,7 @@ class TrainingHistoryFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         binding = TrainingHistoryFragmentBinding.inflate(inflater, container, false)
+        binding.hasHistory = false
         return binding.root
     }
 
@@ -42,7 +43,10 @@ class TrainingHistoryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
         trainingHistoryViewModel.historyList.observe(this, Observer<List<TrainingHistory>> { list ->
             binding.rvHistory.apply {
-                adapter = list?.let { HistoryAdapter(it) }
+                list?.let {
+                    binding.hasHistory = it.isNotEmpty()
+                    adapter = HistoryAdapter(it)
+                }
             }
         })
     }
