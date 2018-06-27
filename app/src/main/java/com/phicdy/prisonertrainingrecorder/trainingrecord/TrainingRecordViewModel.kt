@@ -33,8 +33,9 @@ class TrainingRecordViewModel : ViewModel() {
 
     fun onRecordClicked() {
         val (resultReps, repsInt) = validateReps()
+        if (!resultReps) return
         val (resultStep, stepInt) = validateStep()
-        if (!resultReps || !resultStep) return
+        if (!resultStep) return
         launch(UI) {
             recordHistory(trainingTitle.value.toString(), repsInt, stepInt)
             navigator.closeKeyboard()
