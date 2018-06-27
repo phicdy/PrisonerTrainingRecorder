@@ -2,10 +2,12 @@ package com.phicdy.prisonertrainingrecorder
 
 import android.content.Context
 import android.os.Bundle
+import android.support.annotation.StringRes
 import android.support.design.widget.BottomNavigationView
 import android.support.design.widget.Snackbar
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import com.phicdy.prisonertrainingrecorder.data.Training
 import com.phicdy.prisonertrainingrecorder.traininghistory.TrainingHistoryFragment
 import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordFragment
@@ -13,7 +15,6 @@ import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordNavigato
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 import kotlinx.android.synthetic.main.activity_main.*
-import android.view.inputmethod.InputMethodManager
 
 
 class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecordNavigator {
@@ -72,23 +73,26 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
     }
 
     override fun showRecordSuccessSnackbar() {
-        Snackbar.make(navigation, R.string.record_result_success, Snackbar.LENGTH_SHORT).show()
+        showSnackbarAboveBottomNavigationBar(R.string.record_result_success)
     }
 
     override fun showRecordNoRepsErrorSnackbar() {
-        Snackbar.make(navigation, R.string.record_result_no_reps, Snackbar.LENGTH_SHORT).show()
+        showSnackbarAboveBottomNavigationBar(R.string.record_result_no_reps)
     }
 
     override fun showRecord0RepsErrorSnackbar() {
-        Snackbar.make(navigation, R.string.record_result_0_reps, Snackbar.LENGTH_SHORT).show()
+        showSnackbarAboveBottomNavigationBar(R.string.record_result_0_reps)
     }
 
     override fun showRecordNoStepErrorSnackbar() {
-        Snackbar.make(navigation, R.string.record_result_no_step, Snackbar.LENGTH_SHORT).show()
+        showSnackbarAboveBottomNavigationBar(R.string.record_result_no_step)
     }
 
     override fun showRecordNot1to10ErrorSnackbar() {
-        Snackbar.make(navigation, R.string.record_result_not_1_to_10_reps, Snackbar.LENGTH_SHORT).show()
+        showSnackbarAboveBottomNavigationBar(R.string.record_result_not_1_to_10_reps)
     }
 
+    private fun showSnackbarAboveBottomNavigationBar(@StringRes res: Int) {
+        Snackbar.make(cl_above_navigation, res, Snackbar.LENGTH_SHORT).show()
+    }
 }
