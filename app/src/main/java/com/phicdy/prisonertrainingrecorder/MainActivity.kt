@@ -93,6 +93,6 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
     }
 
     private fun showSnackbarAboveBottomNavigationBar(@StringRes res: Int) {
-        Snackbar.make(cl_above_navigation, res, Snackbar.LENGTH_SHORT).show()
+        Snackbar.make(fl_content, res, Snackbar.LENGTH_SHORT).show()
     }
 }

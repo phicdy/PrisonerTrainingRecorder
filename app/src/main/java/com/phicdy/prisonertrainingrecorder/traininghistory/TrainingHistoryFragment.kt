@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -30,6 +31,9 @@ class TrainingHistoryFragment : Fragment() {
                               savedInstanceState: Bundle?): View? {
         binding = TrainingHistoryFragmentBinding.inflate(inflater, container, false)
         binding.hasHistory = false
+        binding.rvHistory.apply {
+            layoutManager = LinearLayoutManager(activity)
+        }
         return binding.root
     }
 

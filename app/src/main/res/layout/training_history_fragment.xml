@@ -15,12 +15,14 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rv_history"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             app:layoutManager="android.support.v7.widget.LinearLayoutManager"
             app:spanCount="2"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
             android:padding="8dp"
             android:visibility="@{hasHistory ? View.VISIBLE: View.GONE}"
+            android:scrollbars="vertical"
             tools:context=".traininghistory.TrainingHistoryFragment"/>
         <TextView
             android:layout_width="match_parent"
