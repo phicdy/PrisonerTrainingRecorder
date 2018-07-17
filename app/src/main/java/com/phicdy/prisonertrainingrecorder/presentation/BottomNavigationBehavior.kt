@@ -8,7 +8,7 @@ import android.util.AttributeSet
 import kotlin.math.max
 import kotlin.math.min
 
-class BottomNavigationBehavior<V : View>(context: Context, attrs: AttributeSet) :
+class BottomNavigationBehavior<V : View>(context: Context, attrs: AttributeSet?) :
         CoordinatorLayout.Behavior<V>(context, attrs) {
 
     override fun onStartNestedScroll(

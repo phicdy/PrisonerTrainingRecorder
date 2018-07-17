@@ -15,6 +15,9 @@ import com.phicdy.prisonertrainingrecorder.trainingrecord.TrainingRecordNavigato
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectFragment
 import com.phicdy.prisonertrainingrecorder.trainingselect.TrainingSelectNavigator
 import kotlinx.android.synthetic.main.activity_main.*
+import android.support.design.widget.AppBarLayout
+import android.support.design.widget.CoordinatorLayout
+import com.phicdy.prisonertrainingrecorder.presentation.BottomNavigationBehavior
 
 
 class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecordNavigator {
@@ -46,6 +49,7 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
     }
 
     private fun showTraining() {
+        changeScrollBehavior(false)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_content, TrainingSelectFragment())
                 .commit()
@@ -60,9 +64,20 @@ class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecor
     }
 
     private fun showHistory() {
+        changeScrollBehavior(true)
         supportFragmentManager.beginTransaction()
                 .replace(R.id.fl_content, TrainingHistoryFragment.newInstance())
                 .commit()
+    }
+
+    private fun changeScrollBehavior(enabled: Boolean) {
+        val params = navigation.layoutParams as CoordinatorLayout.LayoutParams
+        if (enabled) {
+            params.behavior = BottomNavigationBehavior<View>(this, null)
+        } else {
+            params.behavior = null
+        }
+        navigation.requestLayout()
     }
 
     override fun closeKeyboard() {
