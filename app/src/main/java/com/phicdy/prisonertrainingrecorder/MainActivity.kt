@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), TrainingSelectNavigator, TrainingRecordNavigator {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+        if (item.itemId == navigation.selectedItemId) return@OnNavigationItemSelectedListener false
         when (item.itemId) {
             R.id.navigation_training -> {
                 showTraining()
